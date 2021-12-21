@@ -86,7 +86,7 @@ typeOfGroup.addEventListener('change', (event) => {
 });
 
 shuffleButton.onclick = () => {
-    const listOfStudents = studentsTextarea.value.trim().split("\n")
+    const listOfStudents = studentsTextarea.value.trim().split(/[,\n\r]/)
     const groupSize = parseInt(groupSizeInput.value)
     shuffle(listOfStudents, groupSize, typeOfGroupValue)
 }

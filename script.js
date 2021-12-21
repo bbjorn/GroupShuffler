@@ -72,6 +72,7 @@ const shuffle = (listOfStudents, groupSize = 4, typeOfGroup) => {
 }
 
 const typeOfGroup = document.getElementById("typeOfGroup")
+const typeOfSeparator = document.getElementById("typeOfSeparator")
 const shuffleButton = document.getElementById("shuffleButton")
 const studentsTextarea = document.getElementById("listOfStudents")
 const groupSizeInput = document.getElementById("groupSize")
@@ -85,8 +86,13 @@ typeOfGroup.addEventListener('change', (event) => {
   groupSizeLabel.innerText = `${labelText}:`;
 });
 
+let splitter = /[,\n]/
+typeOfSeparator.addEventListener('change', (event) => {
+    splitter = new RegExp(event.target.value)
+})
+
 shuffleButton.onclick = () => {
-    const listOfStudents = studentsTextarea.value.trim().split(/[,\n]/)
+    const listOfStudents = studentsTextarea.value.trim().split(splitter)
     const groupSize = parseInt(groupSizeInput.value)
     shuffle(listOfStudents, groupSize, typeOfGroupValue)
 }

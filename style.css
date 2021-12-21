@@ -7,12 +7,10 @@
     --color: hsl(54, 90%, 47%);
 }
 
-
 ::selection {
     color: black;
     background: hsl(var(--hue) var(--sat) var(--light) / 0.8)
-  }
-
+}
 
 *,*::after,*::before{
     box-sizing: border-box;
@@ -67,6 +65,7 @@ body::before {
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 2em;
     padding: 2em;
     max-width: 80em;
@@ -77,14 +76,10 @@ body::before {
     background: #222;
 }
 
-
-
-
 .container{
     color: rgb(245, 245, 245);
-
-    padding: 2rem calc(1rem + 2vw);
-    flex: 1 1 22.5rem;
+    padding: 2rem;
+    flex: 1 1 22rem;
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -110,8 +105,12 @@ body::before {
     width: 3.5em;
 }
 
+.group > *:first-child{
+    margin-inline-end: auto;
+}
+
 @media screen and (max-width: 500px) {
-   .group-divide{
+   .group-divide, .group-separator{
        flex-direction: column; 
    } 
 }

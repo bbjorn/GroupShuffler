@@ -19,7 +19,7 @@
             <div class="container">
                 <h2 class="sectiontitle">List the People</h2>
                 <div class="group group-divide">
-                    <label for="typeOfGroup">Divide into groups by: </label>
+                    <label for="typeOfGroup">Divide by: </label>
                     <select id="typeOfGroup" name="typeOfGroup">
                         <option value="numberOfMembers">Size of Groups</option>
                         <option value="numberOfGroups">Number of Groups</option>
@@ -30,6 +30,14 @@
                     <input type="number" name="sizeOfGroups" id="groupSize" min="0" value="4"/>
                 </div>
 
+                <div class="group group-separator">
+                    <label for="typeOfSeparator">Separate by: </label>
+                    <select id="typeOfSeparator" name="typeOfSeparator">
+                        <option value="[,\n]">Comma or Newline</option>
+                        <option value="[,]">Comma</option>
+                        <option value="[\n]">Newline</option>
+                      </select>
+                </div>
                 <div class="group-list">
                     <label for="listOfStudents">Names: </label>
                     <textarea id="listOfStudents" name="namesOfStudents"></textarea>

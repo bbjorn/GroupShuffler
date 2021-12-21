@@ -115,9 +115,6 @@ body::before {
        flex-direction: column; 
    } 
 }
-.group-divide{
-
-}
 
 .group-list{
     display: flex;

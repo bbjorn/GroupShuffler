@@ -60,7 +60,7 @@ body::before {
 
     transform: rotate(-45deg);
 
-    box-shadow: -2em -2em 0 0 hsl(var(--hue) var(--sat) var(--light) / 0.7), -4em -4em 0 0 currentColor;
+    box-shadow: -2em -2em 0 0 hsla(var(--hue), 100%, var(--light), 0.85), -4em -4em 0 0 currentColor;
 }
 
 .wrapper{

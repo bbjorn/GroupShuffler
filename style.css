@@ -101,13 +101,22 @@ body::before {
     padding-inline: 0.5em;
 }
 
-.group-size{
+.group{
     display: flex;
     gap: 1em;
 }
 
-.group-size input{
+.group input{
     width: 3.5em;
+}
+
+@media screen and (max-width: 500px) {
+   .group-divide{
+       flex-direction: column; 
+   } 
+}
+.group-divide{
+
 }
 
 .group-list{

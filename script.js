@@ -17,33 +17,76 @@ function shuffleArray(array){
     return array
 }
 
-const shuffle = (listOfStudents, groupSize = 4) => {
+const orderBySize = (shuffledStudents, groupSize, shuffledList) => {
+    let groupNbr = 0
+    
+    shuffledStudents.forEach((student, i) => {
+        if (i%groupSize === 0) {
+            groupNbr++
+            const term = document.createElement("dt")
+            term.innerText = `Group ${groupNbr}:`
+            shuffledList.appendChild(term)
+        }
+        const details = document.createElement("dd")
+        details.innerText = student
+        shuffledList.appendChild(details)
+    });
+}
+
+const orderByAmount = (shuffledStudents, groupSize, shuffledList) => {
+    let emptySpotsInAllGroups = new Array(groupSize).fill(0)
+    for(let i = 0; i<shuffledStudents.length; i++){
+        emptySpotsInAllGroups[i%groupSize]++
+    }
+    
+    let groupNbr = 0
+    const initalTerm = document.createElement("dt")
+    initalTerm.innerText = `Group ${groupNbr + 1}:`
+    shuffledList.appendChild(initalTerm)
+
+    shuffledStudents.forEach((student, i) => {
+        if (emptySpotsInAllGroups[groupNbr] === 0) {
+            groupNbr++
+            const term = document.createElement("dt")
+            term.innerText = `Group ${groupNbr + 1}:`
+            shuffledList.appendChild(term)
+        }
+        const details = document.createElement("dd")
+        details.innerText = student
+        shuffledList.appendChild(details)
+        emptySpotsInAllGroups[groupNbr]--
+    });
+}
+
+const shuffle = (listOfStudents, groupSize = 4, typeOfGroup) => {
     console.log(`Every day I'm shufflin'
     Shufflin', shufflin'`)
+    
     const shuffledStudents = shuffleArray(listOfStudents)
     
     let shuffledList = document.getElementById("shuffledlist")
-    let groupNbr = 0
-  
-    shuffledList.innerHTML = shuffledStudents.map((student, i) => {
-        if (i%groupSize === 0) {
-            groupNbr++
-            return `<dt>Group ${groupNbr}:</dt><dd>${student}</dd>`
-        }
-        return `<dd>${student}</dd>`
-    }).join('')
+    shuffledList.innerHTML = ''
     
+    if (typeOfGroup === "numberOfMembers") orderBySize(shuffledStudents, groupSize, shuffledList)
+    else orderByAmount(shuffledStudents, groupSize, shuffledList)
 }
 
-
-
+const typeOfGroup = document.getElementById("typeOfGroup")
 const shuffleButton = document.getElementById("shuffleButton")
 const studentsTextarea = document.getElementById("listOfStudents")
 const groupSizeInput = document.getElementById("groupSize")
+const groupSizeLabel = document.getElementById("groupSizeLabel");
+
+let typeOfGroupValue = "numberOfMembers"
+
+typeOfGroup.addEventListener('change', (event) => {
+  const labelText= typeOfGroup.options[typeOfGroup.selectedIndex].text;
+  typeOfGroupValue = event.target.value
+  groupSizeLabel.innerText = `${labelText}:`;
+});
 
 shuffleButton.onclick = () => {
     const listOfStudents = studentsTextarea.value.trim().split("\n")
     const groupSize = parseInt(groupSizeInput.value)
-    console.log(listOfStudents);
-    shuffle(listOfStudents, groupSize)
+    shuffle(listOfStudents, groupSize, typeOfGroupValue)
 }

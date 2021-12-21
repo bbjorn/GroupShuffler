@@ -19,7 +19,14 @@
             <div class="container">
                 <h2 class="sectiontitle">List the People</h2>
                 <div class="group-size">
-                    <label for="groupSize">Size of groups: </label>
+                    <label for="typeOfGroup">Divide into groups by: </label>
+                    <select id="typeOfGroup" name="typeOfGroup">
+                        <option value="numberOfMembers">Size of Groups</option>
+                        <option value="numberOfGroups">Number of Groups</option>
+                      </select>
+                </div>
+                <div class="group-size">
+                    <label id="groupSizeLabel" for="groupSize">Size of Groups: </label>
                     <input type="number" name="sizeOfGroups" id="groupSize" min="0" value="4"/>
                 </div>
 
